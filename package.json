@@ -24,7 +24,7 @@
   "license": "MIT",
   "bugs": {
 	    "url": "https://github.com/fchanson/node-red-contrib-circularbuffer/issues"
-	}
+	},
   "homepage": "https://github.com/fchanson/node-red-contrib-circularbuffer",
   "readmeFilename": "README.md"
 }
