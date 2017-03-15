@@ -1,7 +1,7 @@
 {
   "name": "node-red-contrib-circularbuffer",
   "version": "0.0.1",
-  "description": "This node accepts PCM audio data and plays it to the speakers",
+  "description": "This node provides a buffer (circular or not) of numeric data",
   "dependencies": {
 
   },
