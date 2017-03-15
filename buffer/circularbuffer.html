@@ -1,0 +1,90 @@
+
+
+<script type="text/x-red" data-template-name="circularbuffer">
+
+    <div class="form-row">
+        <label for="node-input-name"><i class="icon-tag"></i>Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+    	<label for="node-input-size">Size</label>
+	    <input type="text" id="node-input-size" placeholder="10">
+  	</div>
+  	<div class="form-row">
+    	<label for="node-input-circular">Circular</label>
+	    <select type="text" id="node-input-circular">
+	      <option value="yes">Yes</option>
+	      <option value="no">No</option>
+	    </select>
+  	</div>
+  	<div class="form-row" id="sliding_size" class="hide">
+    	<label for="node-input-sliding_size">Sliding size</label>
+		<input type="text" id="node-input-sliding_size" placeholder="1">
+  	</div>
+  	
+</script>
+
+<script type="text/x-red" data-help-name="circularbuffer">
+    <p>This node provides a buffer of numeric data.</p>
+    <p>The input must be a Number contained into <b>msg.payload</b> and is added to the buffer</p>
+    <p>You can define :</p>
+    <ul>
+        <li>the size of the buffer</li>
+        <li>if it is a circular buffer</li>
+        <li>the sliding size if it is circular</li>
+    </ul>
+    <p>In case of not circular buffer, an output message is sent each time the buffer size is reached and the buffer is cleared.</p>
+    <p>In case of circular buffer, an output message is sent each time the buffer size is reached and the first values (sliding_size) are removed from the buffer.</p>
+    <p>Each output <b>msg.payload</b> contains : </p>
+    <ul>
+        <li>buffer : the buffer.</li>
+        <li>sum : the sum of the buffer values.</li>
+        <li>avg : the average of the buffer values.</li>
+        <li>min : the min of the buffer values.</li>
+        <li>max : the max of the buffer values.</li>
+        <li>median : the median of the buffer values.</li>
+        <li>stddev : the standard deviation of the buffer values.</li>
+        <li>out : the values removed from the buffer if it is circular</li>
+    </ul>
+    <p>The buffer parameters can be overwritten by using <b>msg.topic</b> : </p>
+    <ul>
+        <li>msg.topic.clear (boolean) to clear the buffer</li>
+        <li>msg.topic.size (integer) to change the size of the buffer</li>
+        <li>msg.topic.circular (boolean) to set if the buffer is circular or not</li>
+        <li>msg.topic.sliding_size (integer) to change the sliding size</li>
+    </ul>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('circularbuffer',{
+        category: 'function',
+        color:"#3fadb5",
+        defaults: {
+            name: {value:"Circular Buffer"},
+            size: {value:"10"},
+            circular: {value:"no"},
+            sliding_size: {value:"1"}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "bridge.png",
+        align: "right",
+        label: function() {
+            return this.name;
+        },
+        labelStyle: function() {
+            return (this.name)?"node_label_italic":"";
+        },
+        oneditprepare: function() {
+            $("#node-input-circular").change(function() {
+                if ($("#node-input-circular").val() === "yes") {
+                    $("#sliding_size").show();
+                } else {
+                    $("#sliding_size").hide();
+                }
+            });
+        }
+
+    });
+</script>
+
