@@ -1,4 +1,4 @@
-# node-red-contrib-buffer
+# node-red-contrib-circularbuffer
 
 This node provides a buffer (circular or not) of numeric data
 
