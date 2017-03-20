@@ -25,7 +25,7 @@ You can define :<br>
 - the sliding size if it is circular.
 
 In case of not circular buffer, an output message is sent each time the buffer size is reached and the buffer is cleared.<br>
-In case of circular buffer, an output message is sent each time the buffer size is reached and the first values (sliding_size) are removed from the buffer.<br>
+In case of circular buffer, an output message is sent each time the buffer size is reached and the first values (sliding_size) are removed from the buffer.<p>
 Each output **msg.payload** contains : <br>
 
 - buffer : the buffer.
