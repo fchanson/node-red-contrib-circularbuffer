@@ -16,17 +16,17 @@ in the Node-red, Manage palette, Install node-red-contrib-circularbuffer
 
 ### Usage
 
-This node provides a buffer of numeric data.
-The input must be a Number contained into **msg.payload** and is added to the buffer
-You can define :
+This node provides a buffer of numeric data.<p>
+The input must be a Number contained into **msg.payload** and is added to the buffer.<br>
+You can define :<br>
 
 - the size of the buffer.
 - if it is a circular buffer.
 - the sliding size if it is circular.
 
-In case of not circular buffer, an output message is sent each time the buffer size is reached and the buffer is cleared.
-In case of circular buffer, an output message is sent each time the buffer size is reached and the first values (sliding_size) are removed from the buffer.
-Each output **msg.payload** contains : 
+In case of not circular buffer, an output message is sent each time the buffer size is reached and the buffer is cleared.<br>
+In case of circular buffer, an output message is sent each time the buffer size is reached and the first values (sliding_size) are removed from the buffer.<br>
+Each output **msg.payload** contains : <br>
 
 - buffer : the buffer.
 - sum : the sum of the buffer values. 
@@ -37,7 +37,7 @@ Each output **msg.payload** contains :
 - stddev : the standard deviation of the buffer values.
 - out : the values removed from the buffer if it is circular.
 
-The buffer parameters can be overwritten by using **msg.topic** :
+The buffer parameters can be overwritten by using **msg.topic** :<br>
 
 - msg.topic.clear (boolean) to clear the buffer.
 - msg.topic.size (integer) to change the size of the buffer.
