@@ -44,3 +44,6 @@ The buffer parameters can be overwritten by using **msg.topic** :<br>
 - msg.topic.circular (boolean) to set if the buffer is circular or not.
 - msg.topic.sliding_size (integer) to change the sliding size.
 
+### Thanks
+
+Thanks Saniya for our discutions and your help about this package :-)
