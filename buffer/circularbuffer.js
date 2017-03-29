@@ -51,33 +51,34 @@ module.exports = function(RED) {
         	return stdDev;
         }
         
-        function add(element) {
+        function add(msg) {
+        	var element = msg.payload;
+        	
         	if(isNumeric(element)) {
         		var n = Number(element);
         		array.push(n);
         		sum += n;
 
 	        	if(array.length==node.size) {
-	        		var m = {};
-	        		m.payload = {};
-	        		m.payload.buffer = array.slice();
+	        		msg.payload = {};
+	        		msg.payload.buffer = array.slice();
 	        		
 	        		avg = sum/node.size;
-	        		var min = Math.min(...m.payload.buffer);
-	        		var max = Math.max(...m.payload.buffer);
-	        		var median = getMedian(m.payload.buffer.slice());
-	        		var stdDev = getStdDev(m.payload.buffer);
+	        		var min = Math.min(...msg.payload.buffer);
+	        		var max = Math.max(...msg.payload.buffer);
+	        		var median = getMedian(msg.payload.buffer.slice());
+	        		var stdDev = getStdDev(msg.payload.buffer);
 	        		
-	        		m.payload.sum = sum;
-	        		m.payload.avg = avg;
-	        		m.payload.min = min;
-	        		m.payload.max = max;
-	        		m.payload.median = median;
-	        		m.payload.stddev = stdDev;
+	        		msg.payload.sum = sum;
+	        		msg.payload.avg = avg;
+	        		msg.payload.min = min;
+	        		msg.payload.max = max;
+	        		msg.payload.median = median;
+	        		msg.payload.stddev = stdDev;
 	        		if(node.circular=="yes") {
-	        			m.payload.out = out;
+	        			msg.payload.out = out;
 	        		}
-	        		node.send(m);
+	        		node.send(msg);
 	        		
 	        		if(node.circular=="yes" && isNumeric(node.sliding_size)) {
 	        			var slid = Number(node.sliding_size);
@@ -143,7 +144,7 @@ module.exports = function(RED) {
             	if(msg.hasOwnProperty('topic')) {
             		config(msg.topic);
             	} else if(msg.hasOwnProperty('payload')) {
-            		add(msg.payload);	
+            		add(msg);	
             	}
             	
 
